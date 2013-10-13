@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  div(ng-controller='HomeCtrl')
+    div.navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand Playerfy
+          .nav-collapse.collapse
+            .nav
+              form.navbar-form.pull-left(ng:submit='doSearch()')
+                input.span2(type='text', ng-model='query', placeholder='Enter your query')
+                button.btn(type='submit') Search
+    .container-fluid
+      .row-fluid
+        #player.span4
+          audio(data-player-control="player", data-playlist="playlist", audio-player)
+          .well.sidebar-nav
+            .controls 
+              a
+                i.icon-step-backward.icon-2x(ng-click="player.prev(true)")
+              a
+                i(ng-class="{'icon-pause icon-2x': player.playing, 'icon-play icon-2x': !player.playing }", ng-click="player.playPause()")
+              a
+                i.icon-step-forward.icon-2x(ng-click="player.next(true)")
+            div.playlist
+              table
+                tbody.nav.nav-list(ui-sortable, ng-model='playlist')
+                  tr(ng-repeat='play in playlist')
+                    td
+                      a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title}}
+                    td
+                      a(ng-click="removeFromPlaylist($index)")
+                        i.icon-remove.icon-2x
+        .span8(ng-view)
+
+
