@@ -9,7 +9,7 @@ block content
           .nav
             form.navbar-search.pull-left(ng:submit='doSearch()')
               input.search-query(type='text', ng-model='query', placeholder='Introduce tu busqueda')
-              button.btn-primary(type='submit') Buscar
+              button.submit.btn-primary(type='submit') Buscar
     .container-fluid
       .row-fluid
         #player.span5(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
