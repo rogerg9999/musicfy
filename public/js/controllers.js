@@ -46,7 +46,7 @@ app.run(function($rootScope) {
 });
 
 
-function HomeCtrl($scope, $location){
+function HomeCtrl($scope,  $location){
    $scope.query = ""; 
    $scope.playlist = [];
    $scope.doSearch = function(){
@@ -65,8 +65,11 @@ function HomeCtrl($scope, $location){
   }); 
   
   $scope.$on('playData', function(event, args){
-     $scope.playlist = [args]; 
+     $scope.playlist.length = 0;
+     $scope.playlist.push(args);
   });
+
+  $location.path('/search/main');
   
    }
 

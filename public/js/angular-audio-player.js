@@ -279,7 +279,7 @@ angular.module('angular-audio-player', ['helperFunctions'])
                 $timeout(function () { // need $timeout because the audioTag needs a little time to launch the 'pause' event
                   player._clearAudioList();
                   player._addAudioList(playlistNew[0]);
-                  player.load();
+                  player.load(true);
                   player.tracks = playlistNew.length;
                 });
               }
@@ -287,7 +287,7 @@ angular.module('angular-audio-player', ['helperFunctions'])
           } else if (playlistNew.length) {
             player._clearAudioList();
             player._addAudioList(playlistNew[0]);
-            player.load();
+            player.load(true);
             player.tracks = playlistNew.length;
           }
 

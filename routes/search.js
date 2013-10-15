@@ -36,7 +36,7 @@ cacheSchema.pre('save', function (next) {
 
 var Cache = mongoose.model('Cache', cacheSchema);
 
-
+var SKULL_MAIN_URL = "http://mp3skull.com"; 
 var SKULL_URL = "http://mp3skull.com/mp3/";
 var SKULL_LINK_SELECTOR = "div:first-child>a";
 var SKULL_TITLE_SELECTOR = "b";
@@ -44,7 +44,7 @@ var SKULL_PARENT_SELECTOR = "div[id=right_song]";
 
 
 var skull = function(query, callback){
-	var url = SKULL_URL + query + ".html";
+	var url = query!='main'?SKULL_URL + query + ".html": SKULL_MAIN_URL;
 	fetch(url, SKULL_PARENT_SELECTOR, SKULL_LINK_SELECTOR, SKULL_TITLE_SELECTOR, callback);
 }
 
