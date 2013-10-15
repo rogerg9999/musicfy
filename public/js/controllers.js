@@ -15,6 +15,11 @@ angular.module('filters', []).
             }
 
         };
+    }).filter('last', function(){
+      return function(text, end){
+        aux = text.split('/');
+        return aux[aux.length-1];
+      }
     });
 
 var app = angular.module('music', ['ui.bootstrap', 'angular-audio-player', 'filters', 'ui.sortable']);
