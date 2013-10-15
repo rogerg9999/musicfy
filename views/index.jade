@@ -6,11 +6,10 @@ block content
       .navbar-inner
         .container
           a.brand BajarMusica.me
-          .nav-collapse.collapse
-            .nav
-              form.navbar-search.pull-left(ng:submit='doSearch()')
-                input.search-query(type='text', ng-model='query', placeholder='Introduce tu busqueda')
-                button.btn-primary(type='submit') Buscar
+          .nav
+            form.navbar-search.pull-left(ng:submit='doSearch()')
+              input.search-query(type='text', ng-model='query', placeholder='Introduce tu busqueda')
+              button.btn-primary(type='submit') Buscar
     .container-fluid
       .row-fluid
         #player.span5(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
@@ -32,6 +31,6 @@ block content
                     td
                       a(ng-click="removeFromPlaylist($index)")
                         i.icon-remove.icon-2x
-        div(ng-view ng-class="{'span12' : !playlist.length, 'span7' : playlist.length}")
+        div.span7(ng-view, ng-class="{'offset3' : !playlist.length}")
 
 
