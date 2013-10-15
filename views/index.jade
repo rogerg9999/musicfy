@@ -5,17 +5,17 @@ block content
     div.navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
-          a.brand Playerfy
+          a.brand BajarMusica.me
           .nav-collapse.collapse
             .nav
-              form.navbar-form.pull-left(ng:submit='doSearch()')
-                input.span2(type='text', ng-model='query', placeholder='Enter your query')
-                button.btn(type='submit') Search
+              form.navbar-search.pull-left(ng:submit='doSearch()')
+                input.search-query(type='text', ng-model='query', placeholder='Introduce tu busqueda')
+                button.btn-primary(type='submit') Buscar
     .container-fluid
       .row-fluid
-        #player.span4
+        #player.span5(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
           audio(data-player-control="player", data-playlist="playlist", audio-player)
-          .well.sidebar-nav
+          .well.sidebar-nav.left-play
             .controls 
               a
                 i.icon-step-backward.icon-2x(ng-click="player.prev(true)")
@@ -28,10 +28,10 @@ block content
                 tbody.nav.nav-list(ui-sortable, ng-model='playlist')
                   tr(ng-repeat='play in playlist')
                     td
-                      a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title}}
+                      a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title|truncate:50}}
                     td
                       a(ng-click="removeFromPlaylist($index)")
                         i.icon-remove.icon-2x
-        .span8(ng-view)
+        div(ng-view ng-class="{'span12' : !playlist.length, 'span7' : playlist.length}")
 
 

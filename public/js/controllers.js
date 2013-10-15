@@ -20,12 +20,10 @@ angular.module('filters', []).
 var app = angular.module('music', ['ui.bootstrap', 'angular-audio-player', 'filters', 'ui.sortable']);
 
 app.config(function($routeProvider, $locationProvider){
-    
-    
     $routeProvider.
-    when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
-    when('/', {controller: HomeCtrl, templateUrl:'/partials/index'}).
-    otherwise({redirectTo: '/'});
+      when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
+      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'}).
+      otherwise({redirectTo: '/'});
    $locationProvider.hashPrefix('!');
     //$locationProvider.html5Mode(true);
 });
@@ -54,7 +52,6 @@ function HomeCtrl($scope,  $location){
    };
    
     $scope.removeFromPlaylist = function(index){
-        console.log("remove "+index);
         if(index > -1 && $scope.playlist.length > 0)
             $scope.playlist.splice(index, 1);
     };
@@ -68,8 +65,6 @@ function HomeCtrl($scope,  $location){
      $scope.playlist.length = 0;
      $scope.playlist.push(args);
   });
-
-  $location.path('/search/main');
   
    }
 

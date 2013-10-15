@@ -8,6 +8,7 @@
 
 body {
     padding-top: 60px;
+    background: url(/images/billie_holiday.png) repeat 0 0;
   }
   
   i{
@@ -27,8 +28,19 @@ body {
   
   #player i{
     margin: 20px 20px;  
+
   }
   
   .playlist{
       margin-top: 20px;
   }
+
+  
+  .left-play{
+    background: url(/images/subtle_carbon.png) repeat 0 0;
+  }
+
+  .center{
+    text-align: center;
+  }
+

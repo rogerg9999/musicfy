@@ -1,6 +1,6 @@
 .row-fluid(ng-controller='SearchCtrl')
   div(ng-repeat='result in results')
-    span.span8 {{result.title|truncate}}
+    span.span8 {{result.title|truncate:60}}
     span#options.span4
       a
         i.icon-play.icon-2x(ng-click="play({{result}})")
