@@ -31,50 +31,34 @@ var visit = function(path, callback){
 	});
 }
 
-exports.handleCrawler = function(req, res, next){
- 
+exports.crawler = function(req, res, next) {
   var fragment = req.query._escaped_fragment_;
-  
-  console.log(fragment);
-  if(fragment != null) {
- 
-    // Serve index template for root
-    if(fragment == "" || fragment == "/") {
-        fragment = "/index.html";
-    }
- 
-    // Check if fragment starts with "/"
-    if(fragment.charAt(0) != "/") {
-        fragment = "/" + fragment;
-    }
- 
-    // Check if fragment ends with html
-    if(fragment.indexOf(".html", this.length - 5) == -1) {
-        fragment += ".html";
-    }
- 
-    // Serve template or 404
-    try {
-    	fragment = fragment.substring(0, fragment.length-5);
-    	Snapshot.findOne({path: fragment}, 'snapshot, lastMod', function(error, result){
-    		if(result)
-    			res.send(result.snapshot);
-    		else
-    			visit("localhost:3000/"+fragment, function(html){
-    				if(html!=null){
-    					var snaphot = new Snapshot({path: fragment, snapshot: html});
-    					snapshot.save();
-    				}
-    				res.send(html);
-    			});
-    	});
 
-    } catch(err) {
-        res.send(404);
-    }
-  }else{
-     next();
+  // If there is no fragment in the query params
+  // then we're not serving a crawler
+  if (!fragment) return next();
+
+  // If the fragment is empty, serve the
+  // index page
+  if (fragment === "" || fragment === "/")
+    fragment = "/index.html";
+
+  // If fragment does not start with '/'
+  // prepend it to our fragment
+  if (fragment.charAt(0) !== "/")
+    fragment = '/' + fragment;
+
+  // If fragment does not end with '.html'
+  // append it to the fragment
+  if (fragment.indexOf('.html') == -1)
+    fragment += ".html";
+
+  // Serve the static html snapshot
+  try {
+    var file = __dirname + "/snapshots" + fragment;
+    res.sendfile(file);
+  } catch (err) {
+    res.send(404);
   }
- 
 };
 
