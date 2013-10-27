@@ -54,6 +54,7 @@ app.use(function(req, res, next) {
     });
     
   } catch (err) {
+    console.log(err);
     res.send(404);
   }
 });
