@@ -27,8 +27,8 @@ var app = angular.module('music', ['ui.bootstrap', 'angular-audio-player', 'filt
 app.config(function($routeProvider, $locationProvider){
     $routeProvider.
       when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
-      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'}).
-      otherwise({redirectTo: '/'});
+      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'});
+      //otherwise({redirectTo: '/'});
    
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
