@@ -1,5 +1,6 @@
 var Browser = require('zombie'),
    mongoose = require('mongoose');
+   var fs = require('fs');
 
 
 
@@ -18,15 +19,18 @@ snapshotSchema.pre('save', function (next) {
 
 var Snapshot = mongoose.model('Snapshot', snapshotSchema);
 
-var visit = function(path, callback){
+exports.visit = function(path, file){
 	var browser = new Browser();
 	browser.visit(path, function(){
 		browser.wait(1000,function(){
 			var html = null;
 			try{
 				html = browser.html();
+                fs.writeFile(file, html, function(err){
+                    if(err)
+                        console.log(err);
+                });
 			}catch(e){console.log(e)};
-			calback(html);
 		});
 	});
 }
@@ -50,13 +54,19 @@ exports.crawler = function(req, res, next) {
 
   // If fragment does not end with '.html'
   // append it to the fragment
-  if (fragment.indexOf('.html') == -1)
-    fragment += ".html";
+ // if (fragment.indexOf('.html') == -1)
+   // fragment += ".html";
 
   // Serve the static html snapshot
   try {
     var file = __dirname + "/snapshots" + fragment;
-    res.sendfile(file);
+    fs.exists(file, function(exists){
+        if(exists)
+            res.sendfile(file);
+        else
+            visit(fragment, file);
+    });
+    
   } catch (err) {
     res.send(404);
   }

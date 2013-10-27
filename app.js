@@ -40,13 +40,19 @@ app.use(function(req, res, next) {
 
   // If fragment does not end with '.html'
   // append it to the fragment
-  if (fragment.indexOf('.html') == -1)
-    fragment += ".html";
+ // if (fragment.indexOf('.html') == -1)
+   // fragment += ".html";
 
   // Serve the static html snapshot
   try {
     var file = __dirname + "/snapshots" + fragment;
-    res.sendfile(file);
+    fs.exists(file, function(exists){
+        if(exists)
+            res.sendfile(file);
+        else
+            robots.visit(fragment, file);
+    });
+    
   } catch (err) {
     res.send(404);
   }
