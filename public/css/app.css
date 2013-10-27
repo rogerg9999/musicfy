@@ -83,3 +83,10 @@ color: white;
  .submit{
   margin-left: 10px;
 }
+
+.sidebar-nav-fixed {
+    padding: 9px 0;
+    position:fixed;
+    left:20px;
+    top:60px;
+}

@@ -29,8 +29,9 @@ app.config(function($routeProvider, $locationProvider){
       when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
       when('/', {controller: HomeCtrl, templateUrl:'/partials/index'}).
       otherwise({redirectTo: '/'});
-   $locationProvider.hashPrefix('!');
-    //$locationProvider.html5Mode(true);
+   
+  $locationProvider.html5Mode(true);
+  $locationProvider.hashPrefix('!');
 });
 
 
