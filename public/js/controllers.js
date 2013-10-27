@@ -30,7 +30,7 @@ app.config(function($routeProvider, $locationProvider){
       when('/', {controller: HomeCtrl, templateUrl:'/partials/index'});
       //otherwise({redirectTo: '/'});
    
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
 });
 
