@@ -29,7 +29,7 @@ if ('development' == app.get('env')) {
 }
 app.use(function(req, res, next) {
   var fragment = req.query._escaped_fragment_;
-
+  console.log("hey fragment" + fragment);
   // If there is no fragment in the query params
   // then we're not serving a crawler
   if (!fragment) return next();
