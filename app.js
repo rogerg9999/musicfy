@@ -51,7 +51,7 @@ app.use(function(req, res, next) {
 
   // Serve the static html snapshot
   try {
-    var file = __dirname + "/snapshots" + fragment;
+    var file = "snapshots" + fragment;
     res.sendfile(file);
   } catch (err) {
     res.send(404);
