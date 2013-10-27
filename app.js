@@ -27,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.use(function(req, res, next) {
+
+app.use('/',function(req, res, next) {
   var fragment = req.query._escaped_fragment_;
   console.log("hey fragment" + fragment);
   // If there is no fragment in the query params
