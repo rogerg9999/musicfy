@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var search = require('./routes/search');
+var snapshots = require('./routes/snapshots');
 var http = require('http');
 var path = require('path'),
 robots = require('./routes/robots');
