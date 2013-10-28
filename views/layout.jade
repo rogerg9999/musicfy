@@ -1,7 +1,10 @@
 doctype 5
-html(ng-app="music")
+html(ng-app="music", ng-controller='HomeCtrl')
   head
+    title {{artist.name}} MP3 descargar musica GRATIS
     meta(name='fragment', content='!')
+    meta(name='Description', content='{{artist.name}} MP3 descargar musicas GRATIS. Escuchar musica de {{artist.name}} online')
+    meta(name='keywords', content='{{artist.name}}, descargar, musica, gratis, mp3 {{artist.name}}, musica {{artist.name}}, videos, free, mp3, bajar mp3, descargar mp3, escuchar musica {{artist.name}}')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
     script(src='http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js')
