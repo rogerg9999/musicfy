@@ -31,6 +31,6 @@ block content
                     td
                       a(ng-click="removeFromPlaylist($index)")
                         i.icon-remove.icon-2x
-        div.span7(ng-view, ng-class="{'offset3' : !playlist.length}")
+        div(ng-view, ng-class="{'span12' : !playlist.length, 'span7': playlist.length}")
 
 

@@ -1,5 +1,8 @@
 .row-fluid(ng-controller='SearchCtrl')
-  ul.nav.nav-list
+  ul.nav.nav-list.span5
+    li.artist(ng-repeat='artist in artists')
+      a(ng-href="/search/{{artist.name}}") {{artist.name}}
+  ul.nav.nav-list.span7
     li.result(ng-repeat='result in results')
       span.span8(ng-click="play({{result}})") {{result.title|truncate:60}}
       span#options.span4

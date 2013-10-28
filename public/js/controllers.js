@@ -27,11 +27,12 @@ var app = angular.module('music', ['ui.bootstrap', 'angular-audio-player', 'filt
 app.config(function($routeProvider, $locationProvider){
     $routeProvider.
       when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
-      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'});
-      //otherwise({redirectTo: '/'});
-   
-  //$locationProvider.html5Mode(true);
+      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'})
+      .otherwise({redirectTo: '/'});
+  $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
+  
+  
 });
 
 
@@ -71,6 +72,8 @@ function HomeCtrl($scope,  $location){
      $scope.playlist.length = 0;
      $scope.playlist.push(args);
   });
+
+
   
    }
 
@@ -93,7 +96,16 @@ function SearchCtrl($scope, $http, $location, $routeParams){
                 var results = JSON.parse(data.response);
                 $scope.results = results;
             }
-    });  
+    }); 
+
+
+    $http.get("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=adele&api_key=a910e147cc112666250d36ab110903e4&format=json")
+         .success(function(data, status, headers, config){
+            if(status == 200 && data && data["similarartists"]){
+              var artists = data["similarartists"]["artist"];
+              $scope.artists = artists;
+            }
+         }); 
 }
 
 
