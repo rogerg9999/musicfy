@@ -12,25 +12,41 @@ block content
               button.submit.btn-primary(type='submit') Buscar
     .container-fluid
       .row-fluid
-        #player.span5(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
-          audio(data-player-control="player", data-playlist="playlist", audio-player)
-          .well.sidebar-nav.left-play
-            .controls 
-              a
-                i.icon-step-backward.icon-2x(ng-click="player.prev(true)")
-              a
-                i(ng-class="{'icon-pause icon-2x': player.playing, 'icon-play icon-2x': !player.playing }", ng-click="player.playPause()")
-              a
-                i.icon-step-forward.icon-2x(ng-click="player.next(true)")
-            div.playlist
-              table
-                tbody.nav.nav-list(ui-sortable, ng-model='playlist')
-                  tr(ng-repeat='play in playlist')
-                    td
-                      a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title|truncate:50}}
-                    td
-                      a(ng-click="removeFromPlaylist($index)")
-                        i.icon-remove.icon-2x
-        div(ng-view, ng-class="{'span12' : !playlist.length, 'span7': playlist.length}")
+        .span5
+          #player(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
+            audio(data-player-control="player", data-playlist="playlist", audio-player)
+            .well.sidebar-nav.left-play
+              .controls 
+                a
+                  i.icon-step-backward.icon-2x(ng-click="player.prev(true)")
+                a
+                  i(ng-class="{'icon-pause icon-2x': player.playing, 'icon-play icon-2x': !player.playing }", ng-click="player.playPause()")
+                a
+                  i.icon-step-forward.icon-2x(ng-click="player.next(true)")
+              div.playlist
+                table
+                  tbody.nav.nav-list(ui-sortable, ng-model='playlist')
+                    tr(ng-repeat='play in playlist')
+                      td
+                        a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title|truncate:50}}
+                      td
+                        a(ng-click="removeFromPlaylist($index)")
+                          i.icon-remove.icon-2x
+          div(ng-class="{'hide': !similarartists.length, 'show': similarartists.length}") 
+            .artistinfo
+              h2 {{artist.name}}
+              img(ng-src="{{artist.image[2]['#text']}}")               
+            h2 Artistas Similares
+            ul.nav.nav-list
+              li.artist(ng-repeat='artist in similarartists')
+                a(ng-href="/#!/search/{{artist.name}}", tooltip="{{artist.name}}") 
+                  img(ng-src="{{artist.image[2]['#text']}}")
+          div(ng-class="{'hide': !topartists.length || similarartists.length, 'show': topartists.length && !similarartists.length}") 
+            h2 Artistas más escuchados
+            ul.nav.nav-list
+              li.artist(ng-repeat='artist in topartists')
+                a(ng-href="/#!/search/{{artist.name}}", tooltip="{{artist.name}}") 
+                  img(ng-src="{{artist.image[2]['#text']}}")
+        .span7(ng-view)
 
 

@@ -25,14 +25,13 @@ angular.module('filters', []).
 var app = angular.module('music', ['ui.bootstrap', 'angular-audio-player', 'filters', 'ui.sortable']);
 
 app.config(function($routeProvider, $locationProvider){
+   $locationProvider.hashPrefix('!');
     $routeProvider.
       when('/search/:query', {controller: SearchCtrl, templateUrl: '/partials/search'}).
-      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'})
-      .otherwise({redirectTo: '/'});
-  $locationProvider.html5Mode(true);
-  $locationProvider.hashPrefix('!');
-  
-  
+      when('/', {controller: HomeCtrl, templateUrl:'/partials/index'}).
+      otherwise({redirectTo: '/'});
+   
+ 
 });
 
 
@@ -48,10 +47,17 @@ app.run(function($rootScope) {
     $rootScope.$on('play', function(event, args){
        $rootScope.$broadcast('playData', args); 
     });
+
+    $rootScope.$on('similar', function(event, args){
+      $rootScope.$broadcast('similarartists', args);
+    });
+    $rootScope.$on('info', function(event, args){
+      $rootScope.$broadcast('artistinfo', args);
+    });
 });
 
 
-function HomeCtrl($scope,  $location){
+function HomeCtrl($scope, $http, $location){
    $scope.query = ""; 
    $scope.playlist = [];
    $scope.doSearch = function(){
@@ -73,6 +79,21 @@ function HomeCtrl($scope,  $location){
      $scope.playlist.push(args);
   });
 
+  $scope.$on('similarartists', function(event, args){
+    $scope.similarartists = args;
+  });
+
+   $scope.$on('artistinfo', function(event, args){
+    $scope.artist = args;
+  });
+
+  $http.get("/api/artist/top")
+         .success(function(data, status, headers, config){
+            if(status == 200 && data && data["topartists"]){
+              var topartists = data["topartists"]["artist"];
+              $scope.topartists = topartists;
+            }
+         }); 
 
   
    }
@@ -99,13 +120,21 @@ function SearchCtrl($scope, $http, $location, $routeParams){
     }); 
 
 
-    $http.get("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=adele&api_key=a910e147cc112666250d36ab110903e4&format=json")
+    $http.get("/api/artist/similar/"+$routeParams.query)
          .success(function(data, status, headers, config){
             if(status == 200 && data && data["similarartists"]){
               var artists = data["similarartists"]["artist"];
-              $scope.artists = artists;
+              $scope.$emit('similar', artists);
             }
          }); 
+
+    $http.get("/api/artist/info/"+$routeParams.query)
+         .success(function(data, status, headers, config){
+           if(status==200 && data && data["artist"]){
+              var artist = data["artist"];
+              $scope.$emit('info', artist);
+           }
+         });
 }
 
 
