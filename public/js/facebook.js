@@ -2,7 +2,9 @@
 window.fbAsyncInit = function() {
   FB.init({
         appId      : '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
-         channelUrl : '//bajarmusica.me/channel.html',
+        status: true,
+        cookie: true,
+        channelUrl : '//bajarmusica.me/channel.html',
         xfbml      : true                                  // Look for social plugins on the page
       });
 };
