@@ -21,18 +21,18 @@ html(ng-app="music", ng-controller='HomeCtrl')
     script
         window.fbAsyncInit = function() {
           FB.init({
-                appId      : '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
+                appId: '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
                 status: true,
                 cookie: true,
                 xfbml: true,                                 // Look for social plugins on the page
-                channelUrl : '//bajarmusica.me/channel.html'
+                channelUrl: '//bajarmusica.me/channel.html'
              });
             };
 
           (function(d){
              var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
              js = d.createElement('script'); js.id = id; js.async = true;
-             js.src = "//connect.facebook.net/en_US/all.js";
+             js.src = "//connect.facebook.net/es_LA/all.js";
              d.getElementsByTagName('head')[0].appendChild(js);
            }(document));
     block content
