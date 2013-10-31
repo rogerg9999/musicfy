@@ -99,10 +99,8 @@ color: white;
 .share_box{
   position:fixed;
   width:50px;
-  top:10%;
-  right:0%;
-  border:3px solid #a1a1a1;
-  background:#FFF;
+  top:50%;
+  left:0%;
   padding:15px;
   -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
