@@ -19,26 +19,26 @@ html(ng-app="music", ng-controller='HomeCtrl')
   body
     div#fb-root
     div.share_box
-        a(href="https://twitter.com/share", class="twitter-share-button", data-lang="es", url="http://bajarmusica.me") Tweet
-        a
-            div(class="fb-like",  data-colorscheme="light", data-href="http://bajarmusica.me", data-layout="box_count", data-action="like", data-send="false")
-        script
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      a(href="https://twitter.com/share", class="twitter-share-button", data-lang="es", url="http://bajarmusica.me") Tweet
+      a
+        div(class="fb-like",  data-colorscheme="light", data-href="http://bajarmusica.me", data-layout="box_count", data-action="like", data-send="false")
+      script
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     script
-        window.fbAsyncInit = function() {
-          FB.init({
-                appId: '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
-                status: true,
-                cookie: true,
-                xfbml: true,                                 // Look for social plugins on the page
-                channelUrl: '//bajarmusica.me/channel.html'
-             });
-            };
+      window.fbAsyncInit = function() {
+        FB.init({
+              appId: '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
+              status: true,
+              cookie: true,
+              xfbml: true,                                 // Look for social plugins on the page
+              channelUrl: '//bajarmusica.me/channel.html'
+           });
+          };
 
-          (function(d){
-             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-             js = d.createElement('script'); js.id = id; js.async = true;
-             js.src = "//connect.facebook.net/es_LA/all.js";
-             d.getElementsByTagName('head')[0].appendChild(js);
-           }(document));
+        (function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/es_LA/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
     block content
