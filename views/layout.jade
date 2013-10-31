@@ -3,7 +3,7 @@ html(ng-app="music", ng-controller='HomeCtrl')
   head
     title {{artist.name}} MP3 descargar musica GRATIS
     meta(name='fragment', content='!')
-    meta(name='Description', content='{{artist.name}} MP3 descargar musicas GRATIS. Escuchar musica de {{artist.name}} online')
+    meta(name='Description', content='{{artist.name}} MP3 descargar musica GRATIS. Escuchar musica de {{artist.name}} online')
     meta(name='keywords', content='{{artist.name}}, descargar, musica, gratis, mp3 {{artist.name}}, musica {{artist.name}}, videos, free, mp3, bajar mp3, descargar mp3, escuchar musica {{artist.name}}')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
     script(src='http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js')
@@ -17,5 +17,24 @@ html(ng-app="music", ng-controller='HomeCtrl')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')  
     link(rel='stylesheet', href='css/app.css')
   body
+    script
+        window.fbAsyncInit = function() {
+          FB.init({
+                appId      : '252390838242679',                        // App ID from the app dashboard                            // Check Facebook Login status
+                status: true,
+                cookie: true,
+                channelUrl : '//bajarmusica.me/channel.html',
+                xfbml      : true                                  // Look for social plugins on the page
+              });
+            };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/es_LA/all.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+
     div(id="fb-root")
     block content
