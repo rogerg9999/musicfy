@@ -17,6 +17,7 @@ html(ng-app="music", ng-controller='HomeCtrl')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')  
     link(rel='stylesheet', href='css/app.css')
   body
+    div#fb-root
     script
         window.fbAsyncInit = function() {
           FB.init({
@@ -35,6 +36,4 @@ html(ng-app="music", ng-controller='HomeCtrl')
              js.src = "//connect.facebook.net/es_LA/all.js";
              fjs.parentNode.insertBefore(js, fjs);
            }(document, 'script', 'facebook-jssdk'));
-
-    div(id="fb-root")
     block content
