@@ -11,7 +11,7 @@ block content
               button.submit.btn-primary(type='submit') Buscar
     .container-fluid
       .row-fluid
-        .span5
+        .span6
           #player(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
             audio(data-player-control="player", data-playlist="playlist", audio-player)
             .well.sidebar-nav.left-play
@@ -46,6 +46,6 @@ block content
               li.artist(ng-repeat='artist in topartists')
                 a(ng-href="/#!/search/{{artist.name}}", tooltip="{{artist.name}}") 
                   img(ng-src="{{artist.image[2]['#text']}}")
-        .span7(ng-view)
+        .span6(ng-view)
 
 
