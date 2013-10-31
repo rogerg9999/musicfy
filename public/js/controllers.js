@@ -60,8 +60,10 @@ app.run(function($rootScope) {
 function HomeCtrl($scope, $http, $location){
    $scope.query = ""; 
    $scope.playlist = [];
+   $scope.path = $location.path();
    $scope.doSearch = function(){
-     $location.path('/search/'+$scope.query);  
+     $location.path('/search/'+$scope.query); 
+     $scope.path = $location.path(); 
    };
    
     $scope.removeFromPlaylist = function(index){
