@@ -33,6 +33,7 @@ body {
   
   .playlist{
       margin-top: 20px;
+      cursor: pointer;
   }
 
   
