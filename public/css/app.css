@@ -108,3 +108,8 @@ color: white;
         -moz-border-radius: 3px;
         border-radius: 3px;
 }
+
+.share_box a{
+  display: block;
+  margin-bottom: 5px;
+}
