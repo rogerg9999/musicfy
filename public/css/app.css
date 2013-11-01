@@ -17,6 +17,8 @@ body {
 
   .controls{
     text-align: center;
+    margin: 10px;
+    padding: 10px;
   }
   
   #options i{
@@ -25,10 +27,24 @@ body {
   #options .icon-play:default {
       color: green;
   }
-  
+  #player{
+    max-width: 400px;
+    background: url(/images/subtle_carbon.png) repeat 0 0;
+    opacity: 0.8;
+  }
+
   #player i{
     margin: 20px 20px;  
 
+  }
+
+  #player time{
+    float: right;
+    display: block;
+  }
+
+  .current{
+    background-color: #995599;
   }
   
   .playlist{
@@ -38,7 +54,7 @@ body {
 
   
   .left-play{
-    background: url(/images/subtle_carbon.png) repeat 0 0;
+    /*background: url(/images/subtle_carbon.png) repeat 0 0;*/
   }
 
   .center{
@@ -107,8 +123,24 @@ color: white;
   -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
+  z-index: 9999;
 }
 
 .share_box a{
   margin-bottom: 20px;
+}
+
+.centerfix{
+ margin: 40%;
+}
+
+.progress {
+    position: relative;
+    margin: 5px;
+    height: 5px;
+    background: url(/images/denim.png) repeat 0 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
 }

@@ -51,6 +51,7 @@ angular.module('angular-audio-player', ['helperFunctions'])
       this.formatDuration = '';
       this.formatTime = '';
       this.loadPercent = 0;
+      this.progress = 0;
       // Alias
       this.position = this.currentTime;
     };
@@ -169,6 +170,7 @@ angular.module('angular-audio-player', ['helperFunctions'])
             scope.$apply(function () {
               self.currentTime = self.position = self._audioTag.currentTime;
               self.formatTime = self._formatTime(self.currentTime);
+              self.progress = parseInt(self.currentTime/self.duration*100);
             });
           }),
           updatePlaying = function (isPlaying) {

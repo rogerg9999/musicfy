@@ -70,7 +70,7 @@ function HomeCtrl($scope, $http, $location){
     };
 
   $scope.$on('addToPlaylist', function(event, args) {
-    $scope.playlist.push(args);
+      $scope.playlist.push(args);
     
   }); 
   
@@ -110,13 +110,14 @@ function SearchCtrl($scope, $http, $location, $routeParams){
         $scope.$emit('play', args);
     };
 
-
+      $scope.loading = true;
       $http.get("/api/search/"+$routeParams.query)
          .success(function(data, status, headers, config){
             if(status === 200 && data && data.response){
                 var results = JSON.parse(data.response);
                 $scope.results = results;
             }
+            $scope.loading = false;
     }); 
 
 

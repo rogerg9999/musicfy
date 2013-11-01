@@ -1,5 +1,7 @@
 extends layout
 block content
+  div.share_box
+        div(class="fb-like",  data-colorscheme="light", data-href="http://bajarmusica.me", data-layout="box_count", data-action="like", data-send="false")
   div
     div.navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
@@ -14,7 +16,7 @@ block content
         .span6
           #player(ng-class="{'hide' : !playlist.length, 'show' : playlist.length}")
             audio(data-player-control="player", data-playlist="playlist", audio-player)
-            .well.sidebar-nav.left-play
+            .sidebar-nav.left-play
               .controls 
                 a
                   i.icon-step-backward.icon-2x(ng-click="player.prev(true)")
@@ -22,12 +24,17 @@ block content
                   i(ng-class="{'icon-pause icon-2x': player.playing, 'icon-play icon-2x': !player.playing }", ng-click="player.playPause()")
                 a
                   i.icon-step-forward.icon-2x(ng-click="player.next(true)")
+                
+              progress(percent="player.progress", class="progress-striped active")
+              div.time
+                span {{player.formatTime}} /
+                span  {{player.formatDuration}}
               div.playlist
                 table
                   tbody.nav.nav-list(ui-sortable, ng-model='playlist')
-                    tr(ng-repeat='play in playlist')
+                    tr.result(ng-repeat='play in playlist')
                       td
-                        a(ng-click="player.playPause($index)") {{$index+1}}.  {{play.title|truncate:50}}
+                        div(ng-click="player.playPause($index)", ng-class="{'current': player.currentTrack == $index+1}") {{$index+1}}.  {{play.title|truncate:50}}
                       td
                         a(ng-click="removeFromPlaylist($index)")
                           i.icon-remove.icon-2x

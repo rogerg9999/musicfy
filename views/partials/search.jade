@@ -1,8 +1,9 @@
 .row-fluid(ng-controller='SearchCtrl')
+  img.centerfix(src="/images/loading_square.gif", ng-class="{'hide': !loading, 'show': loading}")
   ul.nav.nav-list
     li.result(ng-repeat='result in results')
-      span.span8(ng-click="play({{result}})") {{result.title|truncate:60}}
-      span#options.span4
+      span.span9(ng-click="play({{result}})") {{result.title|truncate:60}}
+      span#options.span3
         a
           i.icon-play.icon-2x(ng-click="play({{result}})")
         a(ng-href="{{result.href}}", download="{{result.href|last}}")
