@@ -11,7 +11,7 @@ var path = require('path'),
 robots = require('./routes/robots');
 var fs = require('fs');
 var prerender = 
-  require('prerender-node').set('prerenderServiceUrl', 'http://localhost:8000/');
+  require('prerender-node').set('prerenderServiceUrl', 'http://murmuring-dusk-9664.herokuapp.com/');
 
 
 var app = express();
